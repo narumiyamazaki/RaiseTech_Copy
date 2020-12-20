@@ -248,7 +248,7 @@ ol ol, ul ul, ol ul, ul ol {
     font-weight: 400;
     background-color: #e9f8fb;
 }
-.menu .sub-menu li a {
+ul .sub-menu li a {
     position: relative;
     padding: 15px 60px 15px 15px;
     height: auto;
@@ -257,10 +257,15 @@ ol ol, ul ul, ol ul, ul ol {
     visibility: visible;
     max-height: 300px;  
 }
-.nav-body ul li:hover {
+/*ナビゲーションメニューをホバーした時に背景を青くする*/
+.nav-body > ul > li > a:hover {
     color: #131d34;
     background-color: #d4f1f8;
     text-decoration: none;
+}
+/*サブメニューを開いた時に、ナビゲーションメニューの背景を白くする*/
+.sub-menu  > li:hover {
+    background-color: #fff;
 }
 /*aタグでhrefがないものとタブインデックスでないものの色を
     親要素の色にして、テキストデコレーションをなくしている*/
@@ -462,7 +467,7 @@ p.btn {
 .fa-life-ring::before {
     content: "\f1cd";
 }
-/* responsive*/
+/* responsive max-width: 1200px*/
 @media screen and (max-width: 1200px){
     .header .header-title {
         margin: 10px;
@@ -477,9 +482,10 @@ p.btn {
         height: 30px;
         width: auto;
     }
-    .nav-btn {
+    .nav .nav-btn  {
         display: block;
     }
+    /*ハンバーガーメニュー*/
     .nav-btn a, .nav-btn a.close {
         display: block;
         position: relative;
@@ -514,7 +520,7 @@ p.btn {
     }
     .nav-btn a:after, .nav-btn a.close:after {
         position: absolute;
-        top: 15px;
+        bottom: 15px;
         left: 14px;
         content: "";
         width: 23px;
@@ -523,16 +529,145 @@ p.btn {
         -webkit-transition: .2s;
         transition: .2s;
     }
+    /*ナビゲーションメニュー*/
+    .nav > .is-open > a:before{
+        transform: rotate( -45deg );
+        top: 24px;
+        background-color: #fff;
+    }
+    .is-open > span{
+        display: none;
+    }
+    .nav > .is-open > a:after{
+        transform: rotate( 45deg );
+        top: 24px;
+        background-color: #fff;
+    }
+    .nav > .is-open > a{
+        background-color:#2498b3;
+    }
     .nav-body {
         display: none;
         position: absolute;
         top: 50px;
         left: 0;
-        right: 50px;
+        right: 0;
         z-index: 999;
         background-color: #fff;
     }
+    .nav .is-open {
+        display: block;
+    }
+    
     .nav-body ul {
         flex-direction: column;
     }
+    .nav-body ul li a {
+        height: auto;
+        padding: 10px;
+    }
+    .main {
+        padding-top: 50px;
+    }
+    
+    .menu-special-item {
+        display: none;
+    }
+    .menu-item-has-children > a::before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 13px;
+        width: 24px;
+        height: 2px;
+        margin-top: -1px;
+        background-color: #121212;
+        z-index: 9;
+    }
+    .menu-item-has-children > a::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        width: 2px;
+        height: 24px;
+        margin-top: -12px;
+        background-color: #121212;
+    }
+    /*ナビゲーションのサブメニュー*/
+    ul .sub-menu{
+        position:static;
+    }
+    ul .sub-menu li {
+        background-color:#fff;
+    }
+    .nav-body ul li a:hover{
+        background-color: #f3fafb;
+    }
+    .menu-item-has-children > a {
+        position: relative;
+    }
+    .menu .is-open  > a::after{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: auto;
+    margin-top: 0;
+    background-color: #f7f7f7;
+    }
+    ul .sub-menu li a {
+        padding: 10px 10px 10px 25px;
+    }
 }
+    /* responsive max-width: 767px*/
+    @media screen and (max-width: 767px){
+        .tophead {
+            height: 300px;
+            padding-bottom: 320px;
+            background-position: -25px;
+        }
+        .tophead-layer1 {
+            background-size: cover;
+            align-items: flex-end;
+            background-position: center -30px;
+        }
+        .tophead-body {
+            width: 100%;
+            max-width: 100%;
+            padding: 9px 0 13px;
+            border-radius: 0;
+        }
+        .tophead-title img {
+            display: none;
+        }
+        .tophead-body P {
+            margin: .5em 0;
+            font-size: 1.3rem;
+        }
+        .tophead-body p.btn.btn-big a{
+            padding: 12px 18px;
+            font-size: 1.6rem;
+        }
+        .tophead-layer2 {
+            background-size: cover;
+            background-position: center -25px;
+        }
+        .recommendation {
+            margin-top: 0;
+            flex-direction: column;
+            align-items: center;
+        }
+        .recommendation-entry {
+            margin-bottom: 2.5em;
+            width: auto;
+        }
+        .recommendation-entry:last-child {
+            margin-bottom: 1em;
+        }
+    }
